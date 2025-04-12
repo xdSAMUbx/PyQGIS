@@ -1,6 +1,5 @@
 import os
 from qgis.core import QgsApplication, QgsProject, QgsRasterLayer
-from qgis.gui import QgsMapCanvas
 
 """
 Este programa esta creado con el fin de ser la continuación de la Prueba1 generada anteriormente donde se busca
