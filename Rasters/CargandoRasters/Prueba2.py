@@ -1,9 +1,10 @@
 import os
 from qgis.core import QgsApplication, QgsProject, QgsRasterLayer
-from qgis.PyQt import QtGui, QtCore
+from qgis.gui import QgsMapCanvas
+
 """
 Este programa esta creado con el fin de ser la continuación de la Prueba1 generada anteriormente donde se busca
-realizar el paso a paso para cargar una capa Raster y poder visualizarla externamente sin necesidad de abrir QGIS
+realizar el paso a paso para cargar una capa Raster sin necesidad de abrir QGIS
 """
 def importarRaster () -> None:
 
@@ -21,15 +22,13 @@ def importarRaster () -> None:
     try:
         rlayer: QgsRasterLayer = QgsRasterLayer(pathTiff, "B1_Landsat")
         if rlayer.isValid():
-            QgsProject.instance().addRasterLayer(rlayer)
+            QgsProject.instance().addMapLayer(rlayer)
+            print("La capa se ha cargado con exito")
         else:
             print("El archivo seleccionado no es valido")
             return
     except Exception as ex:
         print(f"El error es este: {ex}")
-
-
-
 
 def iniciarPrograma () -> None:
 
