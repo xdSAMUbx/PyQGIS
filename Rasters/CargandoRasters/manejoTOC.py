@@ -1,17 +1,9 @@
 from pathlib import Path
 import pandas as pd
-from qgis.PyQt.QtGui import QColor
 from qgis.core import (
     QgsApplication,
     QgsRasterLayer,
-    QgsProject,
-    QgsPointXY,
-    QgsRaster,
-    QgsRasterShader,
-    QgsColorRampShader,
-    QgsSingleBandPseudoColorRenderer,
-    QgsSingleBandColorDataRenderer,
-    QgsSingleBandGrayRenderer
+    QgsProject
 )
 
 def usigRasters(grupo, layers) -> None:
@@ -88,7 +80,7 @@ def loadingLayers(): # No se específica que devuelve la función para evitar fu
             root.removeChildNode(nodo)
 
         except Exception as ex:
-            print(f"❌ Error procesando {archivo.name}: {ex}")
+            print(f"Error procesando {archivo.name}: {ex}")
 
     return rts, layersCargados
 
