@@ -1,5 +1,6 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QVBoxLayout, QWidget
+from PyQt5.QtCore import Qt
 
 
 class MainWindow(QMainWindow):
@@ -8,26 +9,25 @@ class MainWindow(QMainWindow):
         self.setGeometry(700,300,500,500)
         self.button = QPushButton("click me",self)
         self.label = QLabel('Hola',self)
-        self.vbox = QVBoxLayout()
-        self.centralWidget = QWidget()
+        self.vbox = QVBoxLayout(self)
+        self.centralWidget = QWidget(self)
         self.initGUI()
 
     def initGUI(self) -> None:
-        self.button.setGeometry(150,200,200,100)
-        self.button.setStyleSheet('font-size: 30px;')
-        self.button.clicked.connect(self.onClick)
 
-        self.label.setGeometry(150,200,200,100)
+        self.button.setStyleSheet('font-size: 30px;')
+        self.button.clicked.connect(self.onClick)  #Se debe revisar los eventos al interactuar con teclado y raton
+
         self.label.setStyleSheet('font-size: 50px;')
 
-        self.vbox.addWidget(self.button)
-        self.vbox.addWidget(self.label)
+        self.vbox.addWidget(self.button, alignment = Qt.AlignCenter)
+        self.vbox.addWidget(self.label, alignment = Qt.AlignCenter)
+
         self.centralWidget.setLayout(self.vbox)
+        self.setCentralWidget(self.centralWidget)
 
     def onClick(self) -> None:
-        print('Button clicked')
-        self.button.setText('Clicked')
-        self.button.setDisabled(True)
+        self.label.setText('Adiós')
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
